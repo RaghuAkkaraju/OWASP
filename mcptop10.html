@@ -1,0 +1,40 @@
+Here are the OWASP Top 10 for MCP :
+
+🔹 MCP01: Token Mismanagement & Secret Exposure – Hard-coded credentials, long-lived tokens, and secrets stored in model memory can be retrieved through prompt injection or compromised context. Full environment compromise follows
+
+🔹 MCP02: Privilege Escalation via Scope Creep – Temporary permissions expand over time. Agents get excessive capabilities. Attackers exploit weak scope enforcement to modify repositories, control systems, or exfiltrate data
+
+🔹 MCP03: Tool Poisoning – Adversaries compromise tools, plugins, or their outputs. Inject malicious/misleading context to manipulate model behavior. The AI trusts poisoned tools and acts on them
+
+🔹 MCP04: Software Supply Chain Attacks & Dependency Tampering – Compromised dependencies alter agent behavior or introduce execution-level backdoors. Your agent runs attacker code silently
+
+🔹 MCP05: Command Injection & Execution – AI agents construct system commands, shell scripts, API calls, or code from untrusted input without validation. User prompts → attacker commands → system execution
+
+🔹 MCP06: Intent Flow Subversion – MCP enables agents to retrieve complex context that acts as secondary instruction channel. Malicious instructions in context hijack the intent flow, steering agents away from user goals toward attacker objectives
+
+🔹 MCP07: Insufficient Authentication & Authorization – MCP servers/tools/agents fail to verify identities or enforce access controls. Multiple agents/services exchange data and execute actions. Weak identity validation = critical attack paths
+
+🔹 MCP08: Lack of Audit and Telemetry – Limited telemetry impedes investigation. You can't see tool invocations, context changes, or user-agent interactions. No immutable audit trails = no incident response
+
+🔹 MCP09: Shadow MCP Servers – Unapproved MCP deployments outside security governance. Like Shadow IT. Developers spin up rogue MCP nodes for experimentation with default credentials, permissive configs, unsecured APIs
+
+🔹 MCP10: Context Injection & Over-Sharing – Context = working memory storing prompts, retrieved data, intermediate outputs. When context windows are shared/persistent/insufficiently scoped, sensitive info from one task/user/agent exposes to another. Convenience becomes liability
+
+
+Most security teams evaluate LLMs for toxicity and hallucination. They don't evaluate MCP-enabled systems for tool poisoning, intent subversion, or privilege escalation.
+
+What to do:
+
+✔️Audit all MCP server deployments (catch shadow servers)
+
+✔️Implement strict scope enforcement (prevent scope creep)
+
+✔️Validate all tool inputs and outputs (prevent poisoning)
+
+✔️Never execute commands from untrusted context (prevent injection)
+
+✔️Maintain immutable audit trails of all tool invocations
+
+✔️Scope context windows per task/user/agent (prevent over-sharing)
+
+✔️Use short-lived tokens, never hard-code secrets
